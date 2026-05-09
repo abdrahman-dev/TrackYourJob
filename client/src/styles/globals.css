@@ -18,17 +18,17 @@
 }
 
 .theme-light {
-  --bg: #f0f2f8;
-  --surface: #ffffff;
-  --surface-2: #e8eaf2;
-  --border: #c8ccdc;
-  --accent: #3b7ef0;
-  --text: #1a1d2e;
-  --text-2: #5a6080;
-  --success: #2d7a4f;
-  --warning: #8a6a00;
-  --danger: #c0392b;
-  --purple: #6c4fd4;
+  --bg: #f5f0eb;
+  --surface: #ede8e1;
+  --surface-2: #e4ddd4;
+  --border: #c8bfb0;
+  --accent: #2563eb;
+  --text: #1c1917;
+  --text-2: #6b5f52;
+  --success: #166534;
+  --warning: #92400e;
+  --danger: #991b1b;
+  --purple: #5b21b6;
 }
 
 *, *::before, *::after {

@@ -1,5 +1,5 @@
 import { BrowserRouter } from 'react-router-dom'
-import { ThemeProvider } from './context/ThemeContext'
+import { ThemeProvider, useTheme } from './context/ThemeContext'
 import { ToastProvider } from './hooks/ToastContext'
 import { Sidebar } from './components/Sidebar'
 import { Topbar } from './components/Topbar'
@@ -14,19 +14,27 @@ import './styles/jobs.css'
 import './styles/cvs.css'
 import './styles/components.css'
 
+function AppLayout() {
+  const { theme } = useTheme()
+
+  return (
+    <ToastProvider>
+      <AnimatedBackground theme={theme} />
+      <Sidebar />
+      <Topbar />
+      <main style={{ marginLeft: 'var(--sidebar-width)', paddingTop: 'var(--topbar-height)', minHeight: '100vh', background: 'var(--bg)', position: 'relative', zIndex: 1 }}>
+        <AppRoutes />
+      </main>
+      <ToastContainer />
+    </ToastProvider>
+  )
+}
+
 export default function App() {
   return (
     <BrowserRouter>
       <ThemeProvider>
-        <ToastProvider>
-          <AnimatedBackground />
-          <Sidebar />
-          <Topbar />
-          <main style={{ marginLeft: 'var(--sidebar-width)', paddingTop: 'var(--topbar-height)', minHeight: '100vh', background: 'var(--bg)', position: 'relative', zIndex: 1 }}>
-            <AppRoutes />
-          </main>
-          <ToastContainer />
-        </ToastProvider>
+        <AppLayout />
       </ThemeProvider>
     </BrowserRouter>
   )

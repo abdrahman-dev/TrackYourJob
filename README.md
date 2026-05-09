@@ -9,8 +9,8 @@
 
 **Track Your Journey — Job Application Tracker**
 
-[![React 18](https://img.shields.io/badge/React-18-4f8ef7?style=flat-square&logo=react)](https://reactjs.org/)
-[![TypeScript](https://img.shields.io/badge/TypeScript-5-3178c6?style=flat-square&logo=typescript)](https://www.typescriptlang.org/)
+[![React 19](https://img.shields.io/badge/React-19-4f8ef7?style=flat-square&logo=react)](https://reactjs.org/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-6-3178c6?style=flat-square&logo=typescript)](https://www.typescriptlang.org/)
 [![Vite](https://img.shields.io/badge/Vite-8-646cff?style=flat-square&logo=vite)](https://vitejs.dev/)
 [![Framer Motion](https://img.shields.io/badge/Framer_Motion-11-0055ff?style=flat-square&logo=framer)](https://www.framer.com/motion/)
 [![IndexedDB](https://img.shields.io/badge/IndexedDB-local-2a7a3b?style=flat-square&logo=sqlite)](https://developer.mozilla.org/en-US/docs/Web/API/IndexedDB_API)
@@ -22,19 +22,23 @@ A private, offline-first job application tracker built with React and TypeScript
 
 ## 🚀 Features
 
-- **Dark pixel UI** — Retro game-inspired design with JetBrains Mono and Space Mono fonts
-- **Light/Dark mode** — Toggle between themes, persisted to localStorage
-- **Full CRUD job tracking** — Log applications, update status, add notes
-- **CV manager** — Upload PDF/DOCX files, mark as general, download anytime
-- **Cover letter tracking** — Toggle and store cover letter text per application
+- **Dark pixel UI** — Retro game-inspired design with JetBrains Mono and Space Mono fonts, sharp 0px border-radius throughout
+- **Warm parchment light mode** — Toggle between dark and light themes. Light mode uses a warm, muted, eye-friendly palette (never pure white). Persisted to localStorage
+- **Canvas animated background** — Subtle floating particle system rendered on HTML5 Canvas with requestAnimationFrame. Particles drift slowly and wrap around edges. Reads the CSS `--accent` color dynamically
+- **Full CRUD job tracking** — Log applications, update status, add notes and cover letters
+- **CV manager** — Upload PDF/DOCX files (max 10 MB), mark as general, download with one click
+- **Cover letter tracking** — Per-application toggle with text area for storing cover letter content
 - **Status pipeline** — Track through Saved → Applied → Interview → Offer → Rejected
-- **Dashboard analytics** — At-a-glance stats with recent applications list
-- **Search & filter** — Search by company/role, filter by status
-- **Import/Export JSON** — Full backup and restore with replace or merge mode
-- **Toast notifications** — Snappy, auto-dismissing feedback on all actions
-- **Animated transitions** — Framer Motion page transitions and staggered lists
-- **Keyboard-friendly forms** — Validation with error states on required fields
-- **Docker support** — One-command deploy via Docker Compose
+- **Dashboard analytics** — Six animated stat cards + recent applications list
+- **Search & filter** — Full-text search by company/role/location, filter by status, sorted newest-first
+- **Cancel on forms** — Cancel button in JobForm discards changes and navigates back
+- **Import/Export JSON** — Full backup and restore with replace or merge mode. CV file data is base64-encoded
+- **Toast notifications** — Snappy, auto-dismissing (3s) feedback on all actions
+- **Animated transitions** — Framer Motion page transitions, staggered list animations, toast enter/exit
+- **Pixel-style favicon** — Custom SVG favicon matching the dark UI aesthetic
+- **SEO optimized** — Full Open Graph, Twitter Card, JSON-LD structured data, and canonical URL
+- **Keyboard-friendly forms** — Validation with red border errors on required fields
+- **Docker support** — One-command deploy via Docker Compose with Nginx
 
 ---
 
@@ -48,6 +52,7 @@ A private, offline-first job application tracker built with React and TypeScript
 | React Router v6 | Client-side routing |
 | idb | IndexedDB wrapper for persistent storage |
 | Framer Motion 11 | Declarative animations |
+| HTML5 Canvas | Animated background particle system |
 | Plain CSS | Styling (no Tailwind, no UI libraries) |
 | Docker / Nginx | Production deployment |
 
@@ -59,60 +64,60 @@ A private, offline-first job application tracker built with React and TypeScript
 TrackYourJob/
 ├── client/
 │   ├── public/
-│   │   └── favicon.svg          # Pixel-style SVG favicon
+│   │   └── favicon.svg            # Pixel-style SVG favicon (dark bg, accent TYJ grid)
 │   ├── src/
 │   │   ├── api/
-│   │   │   ├── jobs.ts          # API stubs — wraps DB calls, ready for axios
-│   │   │   └── cvs.ts           # API stubs for CV operations
+│   │   │   ├── jobs.ts            # API stubs — wraps DB calls, swap to axios later
+│   │   │   └── cvs.ts             # API stubs for CV operations
 │   │   ├── components/
-│   │   │   ├── AnimatedBackground.tsx  # Subtle floating pixel particles
-│   │   │   ├── EmptyState.tsx         # ASCII-art empty state with CTA
-│   │   │   ├── Sidebar.tsx            # Fixed 220px navigation sidebar
-│   │   │   ├── StatusBadge.tsx        # Colored status pill component
-│   │   │   ├── Toast.tsx              # Toast notification container
-│   │   │   └── Topbar.tsx             # Fixed top bar with title + actions
+│   │   │   ├── AnimatedBackground.tsx  # Canvas particle system (35 dots, requestAnimationFrame)
+│   │   │   ├── EmptyState.tsx         # ASCII-art empty state with CTA button
+│   │   │   ├── Sidebar.tsx            # Fixed 220px nav with pixel logo grid
+│   │   │   ├── StatusBadge.tsx        # Colored status pill with light-mode CSS overrides
+│   │   │   ├── Toast.tsx              # Toast notification container with AnimatePresence
+│   │   │   └── Topbar.tsx             # Fixed top bar with title, theme toggle, + ADD JOB
 │   │   ├── context/
-│   │   │   └── ThemeContext.tsx        # Light/dark theme provider
+│   │   │   └── ThemeContext.tsx        # Light/dark theme provider + useTheme hook
 │   │   ├── db/
-│   │   │   └── index.ts              # All IndexedDB operations via idb
+│   │   │   └── index.ts              # All IndexedDB operations via idb (jobs + cvs stores)
 │   │   ├── features/
 │   │   │   ├── cvs/
-│   │   │   │   ├── CVCard.tsx         # Single CV display card
-│   │   │   │   └── CVManager.tsx      # CV upload, list, delete
+│   │   │   │   ├── CVCard.tsx         # CV display card with download/delete + stagger
+│   │   │   │   └── CVManager.tsx      # Dropzone upload, label input, general toggle
 │   │   │   ├── dashboard/
-│   │   │   │   ├── Dashboard.tsx      # Stats grid + recent applications
-│   │   │   │   └── StatCard.tsx       # Animated stat card
+│   │   │   │   ├── Dashboard.tsx      # Stats grid + recent applications list
+│   │   │   │   └── StatCard.tsx       # Animated stat card with colored top bar
 │   │   │   └── jobs/
-│   │   │       ├── JobCard.tsx        # Job list item with stagger
-│   │   │       ├── JobDetail.tsx      # Job edit/delete wrapper
-│   │   │       ├── JobForm.tsx        # Full job create/edit form
-│   │   │       └── JobList.tsx        # Search, filter, sort job list
+│   │   │       ├── JobCard.tsx        # Job list item with stagger animation
+│   │   │       ├── JobDetail.tsx      # Job detail view wrapping JobForm in edit mode
+│   │   │       ├── JobForm.tsx        # Full create/edit form with validation + cancel
+│   │   │       └── JobList.tsx        # Search, filter by status, sort newest-first
 │   │   ├── hooks/
 │   │   │   ├── ToastContext.tsx       # Toast state context + provider
-│   │   │   ├── useCVs.ts             # CV data fetching hook
-│   │   │   ├── useJobs.ts            # Job data fetching hooks
+│   │   │   ├── useCVs.ts             # CV data fetching with loading state
+│   │   │   ├── useJobs.ts            # Job data fetching (list + single) with loading state
 │   │   │   └── useToast.ts           # Toast consumption hook
 │   │   ├── pages/
-│   │   │   └── Settings.tsx          # Import/export page
+│   │   │   └── Settings.tsx          # Import/export page with replace/merge
 │   │   ├── routes/
-│   │   │   └── index.tsx             # All route definitions with animations
+│   │   │   └── index.tsx             # All route definitions with AnimatePresence
 │   │   ├── styles/
-│   │   │   ├── components.css        # Reusable component styles
-│   │   │   ├── cvs.css               # CV manager page styles
-│   │   │   ├── dashboard.css         # Dashboard grid + recent list
-│   │   │   ├── globals.css           # CSS variables + base reset
-│   │   │   ├── jobs.css              # Job list, form, detail styles
-│   │   │   ├── sidebar.css           # Fixed sidebar layout
-│   │   │   └── topbar.css            # Fixed top bar layout
+│   │   │   ├── components.css        # Badges, toasts, emptystate, settings, light-mode overrides
+│   │   │   ├── cvs.css               # CV upload dropzone, list, cards
+│   │   │   ├── dashboard.css         # 3-col stat grid, recent items
+│   │   │   ├── globals.css           # CSS reset + dark/light CSS variables
+│   │   │   ├── jobs.css              # Job list, form fields, detail, cancel button
+│   │   │   ├── sidebar.css           # Fixed 220px sidebar with pixel logo
+│   │   │   └── topbar.css            # Fixed top bar with theme toggle button
 │   │   ├── types/
-│   │   │   └── index.ts              # All shared TypeScript types
+│   │   │   └── index.ts              # Job, CV, Stats, Toast, ImportMode types
 │   │   ├── utils/
-│   │   │   ├── formatDate.ts         # Date formatting helpers
-│   │   │   ├── importExport.ts       # JSON backup/restore logic
-│   │   │   └── statusColors.ts       # Status → color mapping
-│   │   ├── App.tsx                   # Root component with layout
-│   │   └── main.tsx                  # Entry point
-│   ├── index.html                    # SEO-optimized HTML shell
+│   │   │   ├── formatDate.ts         # ISO date to MM/DD/YYYY display
+│   │   │   ├── importExport.ts       # JSON export (base64 CVs) + import (replace/merge)
+│   │   │   └── statusColors.ts       # Status → color mapping for dark mode inline styles
+│   │   ├── App.tsx                   # Root layout: ThemeProvider → AnimatedBackground + Sidebar + Topbar + Routes
+│   │   └── main.tsx                  # Entry point, initDB
+│   ├── index.html                    # SEO-optimized: OG tags, Twitter Card, JSON-LD, preconnect fonts
 │   ├── package.json
 │   ├── tsconfig.json
 │   └── vite.config.ts
@@ -171,19 +176,19 @@ Opens at `http://localhost:3000` behind an Nginx reverse proxy.
 
 ### Dashboard (`/`)
 
-Six stat cards show your pipeline totals at a glance. Below, the five most recent applications are listed. Click any row to jump to the detail view, or "VIEW ALL" to see the full list.
+Six animated stat cards show your pipeline totals (Total, Applied, Interview, Offer, Rejected, Saved) with staggered Framer Motion entrance. Below, the five most recent applications are listed. Click any row to jump to the detail view, or "VIEW ALL →" to see the full list.
 
 ### Jobs (`/jobs`)
 
-Search by company, role, or location. Filter by status with the toggle buttons. Sort is always newest-first. Click any card to edit. Use "+ ADD JOB" in the top bar to create a new entry.
+Search by company, role, or location with the search input. Filter by status using the toggle buttons (ALL, APPLIED, INTERVIEW, OFFER, REJECTED, SAVED). Sort is always newest-first by creation date. Click any card to open the detail view. Use "+ ADD JOB" in the top bar to create a new entry.
 
 ### Job Detail / New Job (`/jobs/:id`, `/jobs/new`)
 
-Fill in company, role, location, date applied, status, and optional notes. Toggle cover letter tracking to reveal a text area. Select an uploaded CV from the dropdown. Required fields show red borders on validation failure. Use "✕ CANCEL" to discard changes, or "DELETE JOB" (edit mode only) to remove an entry after confirmation.
+Fill in company (\*), role (\*), location, job URL, date applied (\*), status, and optional notes. Toggle "Cover letter used" to reveal a text area for pasting cover letter content. Select an uploaded CV from the dropdown. Required fields show red borders on validation failure. Use "✕ CANCEL" to discard changes and navigate back. In edit mode, "DELETE JOB" removes the entry after a confirmation dialog.
 
 ### CV Manager (`/cvs`)
 
-Drag-and-drop or click to upload PDF/DOCX files (max 10 MB). Give each CV a label and optionally mark it as "General" — these get a highlighted left border. Download any CV with one click, or delete to remove it. General CVs are tagged with a "★ GENERAL" badge.
+Drag-and-drop or click to upload PDF/DOCX files (max 10 MB). Give each CV a label and optionally mark it as "General" — these get a highlighted left border. Download any CV with one click (blob URL is revoked after 100ms). General CVs are tagged with a "★ GENERAL" badge.
 
 ### Settings (`/settings`)
 
