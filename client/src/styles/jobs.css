@@ -1,0 +1,190 @@
+.jobs-page {
+  padding: 24px;
+}
+
+.jobs-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+
+.jobs-search {
+  flex: 1;
+  min-width: 180px;
+  font-size: 12px;
+  padding: 7px 10px;
+}
+
+.jobs-filter-btn {
+  font-size: 10px;
+  padding: 5px 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border: 2px solid var(--border);
+  background: var(--surface);
+  color: var(--text-2);
+  cursor: pointer;
+  transition: background 0.12s, color 0.12s, border-color 0.12s;
+}
+.jobs-filter-btn:hover {
+  border-color: var(--accent);
+  color: var(--text);
+}
+.jobs-filter-btn.active {
+  background: var(--accent);
+  color: #0b0c10;
+  border-color: var(--accent);
+  font-weight: 700;
+}
+
+.jobs-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.job-card {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 14px;
+  background: var(--surface);
+  border: 2px solid var(--border);
+  cursor: pointer;
+  transition: border-color 0.12s;
+  font-size: 12px;
+}
+.job-card:hover {
+  border-color: var(--accent);
+}
+
+.job-card-dot {
+  width: 6px;
+  height: 6px;
+  flex-shrink: 0;
+}
+
+.job-card-role {
+  font-weight: 600;
+  color: var(--text);
+}
+.job-card-sep {
+  color: var(--text-2);
+}
+.job-card-company {
+  color: var(--text-2);
+}
+.job-card-location {
+  color: var(--text-2);
+}
+.job-card-status {
+  margin-left: auto;
+}
+.job-card-date {
+  color: var(--text-2);
+  font-size: 10px;
+  white-space: nowrap;
+  margin-left: 8px;
+}
+.job-card-arrow {
+  color: var(--text-2);
+  margin-left: 4px;
+  font-size: 14px;
+}
+
+/* Job Form */
+.job-form {
+  padding: 24px;
+  max-width: 640px;
+}
+
+.job-form-title {
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+.job-form-group {
+  margin-bottom: 14px;
+}
+
+.job-form-label {
+  display: block;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-2);
+  margin-bottom: 4px;
+}
+
+.job-form-input,
+.job-form-select,
+.job-form-textarea {
+  width: 100%;
+}
+
+.job-form-textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+.job-form-checkbox {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.job-form-checkbox input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  accent-color: var(--accent);
+}
+
+.job-form-error {
+  border-color: var(--danger) !important;
+}
+
+.job-form-error-msg {
+  color: var(--danger);
+  font-size: 10px;
+  margin-top: 2px;
+}
+
+.job-form-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.job-form-cancel {
+  background: transparent;
+  border: 2px solid var(--border);
+  color: var(--text-2);
+  font-family: var(--font-mono);
+  font-weight: 500;
+  padding: 8px 20px;
+  cursor: pointer;
+  transition: border-color 0.15s ease, color 0.15s ease;
+}
+.job-form-cancel:hover {
+  border-color: var(--danger);
+  color: var(--danger);
+}
+
+.job-form-delete {
+  border-color: var(--danger);
+  color: var(--danger);
+  margin-left: auto;
+}
+.job-form-delete:hover {
+  background: var(--danger);
+  color: #0b0c10;
+}
+
+.job-detail {
+  padding: 24px;
+  max-width: 640px;
+}

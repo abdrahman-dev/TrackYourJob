@@ -1,0 +1,76 @@
+.topbar {
+  position: fixed;
+  top: 0;
+  left: var(--sidebar-width);
+  right: 0;
+  height: var(--topbar-height);
+  background: var(--surface);
+  border-bottom: 2px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24px;
+  z-index: 99;
+}
+
+.topbar-title {
+  font-family: var(--font-display);
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.topbar-right {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.topbar-status {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  color: var(--text-2);
+  letter-spacing: 0.05em;
+}
+
+.topbar-status-dot {
+  width: 6px;
+  height: 6px;
+  background: var(--success);
+  display: inline-block;
+}
+
+.topbar-theme-btn {
+  background: transparent;
+  border: 2px solid var(--border);
+  color: var(--text);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  padding: 4px 10px;
+  cursor: pointer;
+  transition: border-color 0.15s, color 0.15s;
+  margin-right: 12px;
+  line-height: 1.4;
+}
+.topbar-theme-btn:hover {
+  border-color: var(--accent);
+}
+
+.topbar-add-btn {
+  background: var(--accent);
+  color: #0b0c10;
+  font-weight: 700;
+  font-size: 11px;
+  padding: 7px 14px;
+  letter-spacing: 0.05em;
+  border: 2px solid var(--accent);
+  cursor: pointer;
+  transition: opacity 0.12s;
+  font-family: var(--font-mono);
+}
+.topbar-add-btn:hover {
+  opacity: 0.85;
+  border-color: var(--accent);
+}
