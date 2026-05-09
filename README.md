@@ -44,17 +44,17 @@ A private, offline-first job application tracker built with React and TypeScript
 
 ## 📦 Tech Stack
 
-| Tool | Purpose |
-|---|---|
-| React 19 | UI framework |
-| TypeScript 6 | Type safety |
-| Vite 8 | Build tool and dev server |
-| React Router v6 | Client-side routing |
-| idb | IndexedDB wrapper for persistent storage |
-| Framer Motion 11 | Declarative animations |
-| HTML5 Canvas | Animated background particle system |
-| Plain CSS | Styling (no Tailwind, no UI libraries) |
-| Docker / Nginx | Production deployment |
+| Tool             | Purpose                                  |
+| ---------------- | ---------------------------------------- |
+| React 19         | UI framework                             |
+| TypeScript 6     | Type safety                              |
+| Vite 8           | Build tool and dev server                |
+| React Router v6  | Client-side routing                      |
+| idb              | IndexedDB wrapper for persistent storage |
+| Framer Motion 11 | Declarative animations                   |
+| HTML5 Canvas     | Animated background particle system      |
+| Plain CSS        | Styling (no Tailwind, no UI libraries)   |
+| Docker / Nginx   | Production deployment                    |
 
 ---
 
@@ -195,6 +195,7 @@ Drag-and-drop or click to upload PDF/DOCX files (max 10 MB). Give each CV a labe
 **Export**: Downloads all jobs and CVs as a single JSON file (`tyj-backup-YYYY-MM-DD.json`). CV file data is base64-encoded.
 
 **Import**: Upload a backup JSON file and choose between:
+
 - **Replace** — clears all existing data before importing
 - **Merge** — skips duplicates (same company+role for jobs, same label for CVs)
 
@@ -226,7 +227,7 @@ The backup JSON follows this structure:
     {
       "label": "Software Engineer Resume",
       "file_name": "resume.pdf",
-      "file_data": "JVBERi0xLjcN...",   // base64 encoded
+      "file_data": "JVBERi0xLjcN...", // base64 encoded
       "file_type": "application/pdf",
       "is_general": false,
       "created_at": "2026-03-01T08:00:00.000Z"
