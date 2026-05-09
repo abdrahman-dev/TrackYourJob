@@ -15,8 +15,10 @@
 [![Framer Motion](https://img.shields.io/badge/Framer_Motion-11-0055ff?style=flat-square&logo=framer)](https://www.framer.com/motion/)
 [![IndexedDB](https://img.shields.io/badge/IndexedDB-local-2a7a3b?style=flat-square&logo=sqlite)](https://developer.mozilla.org/en-US/docs/Web/API/IndexedDB_API)
 [![License MIT](https://img.shields.io/badge/License-MIT-yellow?style=flat-square)](LICENSE)
+[![Docker](https://img.shields.io/badge/Docker-ready-2496ed?style=flat-square&logo=docker)](https://www.docker.com/)
+[![Vercel](https://img.shields.io/badge/Deploy-Vercel-000000?style=flat-square&logo=vercel)](https://vercel.com/)
 
-A private, offline-first job application tracker built with React and TypeScript. All your data stays on your device — no servers, no subscriptions, no tracking.
+Track Your Journey is a modern offline-first job application tracker focused on privacy, local storage, productivity, and clean retro-inspired UI.
 
 ---
 
