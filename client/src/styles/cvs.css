@@ -106,6 +106,14 @@
   border-left: 2px solid var(--accent);
 }
 
+.cv-card-info {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+  flex: 1;
+}
+
 .cv-card-label {
   font-weight: 600;
   color: var(--text);
@@ -113,6 +121,9 @@
 .cv-card-file {
   color: var(--text-2);
   font-size: 11px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 .cv-card-badge {
   background: var(--surface-2);
@@ -122,15 +133,18 @@
   letter-spacing: 0.1em;
   padding: 2px 6px;
   border: 1px solid var(--accent);
+  white-space: nowrap;
 }
 .cv-card-date {
   color: var(--text-2);
   font-size: 10px;
-  margin-left: auto;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 .cv-card-actions {
   display: flex;
   gap: 4px;
+  flex-shrink: 0;
 }
 
 .cv-card-btn {
@@ -150,4 +164,51 @@
 .cv-card-btn.danger:hover {
   border-color: var(--danger);
   color: var(--danger);
+}
+
+@media (max-width: 768px) {
+  .cvs-page {
+    padding: 16px;
+  }
+  .cvs-upload {
+    padding: 14px;
+  }
+  .cvs-dropzone {
+    padding: 16px;
+  }
+  .cv-card {
+    flex-wrap: wrap;
+    padding: 10px 12px;
+    gap: 8px;
+  }
+  .cv-card-info {
+    width: 100%;
+  }
+  .cv-card-file {
+    max-width: 120px;
+  }
+  .cv-card-date {
+    margin-left: 0;
+  }
+  .cv-card-actions {
+    width: 100%;
+    justify-content: flex-end;
+  }
+}
+
+@media (max-width: 480px) {
+  .cvs-form-row {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .cvs-label-input {
+    min-width: 0;
+  }
+  .cv-card-info {
+    flex-wrap: wrap;
+    gap: 4px;
+  }
+  .cv-card-file {
+    max-width: 100%;
+  }
 }

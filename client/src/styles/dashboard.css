@@ -103,7 +103,33 @@
 }
 
 @media (max-width: 768px) {
+  .dashboard {
+    padding: 16px;
+  }
   .dashboard-grid {
     grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+  }
+  .stat-card-value {
+    font-size: 26px;
+  }
+  .dashboard-recent-item {
+    flex-wrap: wrap;
+    gap: 6px;
+    padding: 8px 10px;
+    font-size: 11px;
+  }
+}
+
+@media (max-width: 480px) {
+  .dashboard-grid {
+    grid-template-columns: 1fr;
+  }
+  .stat-card-value {
+    font-size: 24px;
+  }
+  .dashboard-recent-loc,
+  .dashboard-recent-divider {
+    display: none;
   }
 }

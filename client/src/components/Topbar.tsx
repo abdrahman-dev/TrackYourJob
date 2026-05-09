@@ -8,7 +8,11 @@ const PAGE_TITLES: Record<string, string> = {
   '/settings': '// SETTINGS',
 }
 
-export function Topbar() {
+interface TopbarProps {
+  onMenuClick: () => void
+}
+
+export function Topbar({ onMenuClick }: TopbarProps) {
   const location = useLocation()
   const navigate = useNavigate()
   const { theme, toggleTheme } = useTheme()
@@ -23,14 +27,19 @@ export function Topbar() {
 
   return (
     <header className="topbar">
-      <div className="topbar-title">{title}</div>
+      <div className="topbar-left">
+        <button className="topbar-hamburger" onClick={onMenuClick} aria-label="Toggle menu">
+          ≡
+        </button>
+        <div className="topbar-title">{title}</div>
+      </div>
       <div className="topbar-right">
         <button className="topbar-theme-btn" onClick={toggleTheme}>
           {theme === 'dark' ? '☀️' : '🌙'}
         </button>
         <div className="topbar-status">
           <span className="topbar-status-dot" />
-          SYS_OK
+          <span className="topbar-status-label">SYS_OK</span>
         </div>
         {showAdd && (
           <button className="topbar-add-btn" onClick={() => navigate('/jobs/new')}>
