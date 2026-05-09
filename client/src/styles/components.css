@@ -9,6 +9,78 @@
   line-height: 1.3;
 }
 
+.theme-light .status-badge[data-status="applied"] {
+  background: #dbeafe !important;
+  color: #1e40af !important;
+}
+.theme-light .status-badge[data-status="interview"] {
+  background: #ede9fe !important;
+  color: #4c1d95 !important;
+}
+.theme-light .status-badge[data-status="offer"] {
+  background: #dcfce7 !important;
+  color: #14532d !important;
+}
+.theme-light .status-badge[data-status="rejected"] {
+  background: #fee2e2 !important;
+  color: #7f1d1d !important;
+}
+.theme-light .status-badge[data-status="saved"] {
+  background: #fef9c3 !important;
+  color: #713f12 !important;
+}
+
+.theme-light .sidebar {
+  background: var(--surface);
+  border-right: 2px solid var(--border);
+}
+.theme-light .sidebar-link.active {
+  background: var(--surface-2);
+  border-left: 2px solid var(--accent);
+}
+
+.theme-light .topbar {
+  background: var(--surface);
+  border-bottom: 2px solid var(--border);
+}
+
+.theme-light .job-card {
+  background: var(--surface);
+  border: 2px solid var(--border);
+}
+.theme-light .job-card:hover {
+  border-color: var(--accent);
+}
+
+.theme-light input,
+.theme-light select,
+.theme-light textarea {
+  background: var(--surface-2);
+  border: 2px solid var(--border);
+  color: var(--text);
+}
+.theme-light input:focus,
+.theme-light select:focus,
+.theme-light textarea:focus {
+  border-color: var(--accent);
+}
+
+.theme-light .jobs-filter-btn {
+  background: var(--surface-2);
+  border: 2px solid var(--border);
+  color: var(--text-2);
+}
+.theme-light .jobs-filter-btn.active {
+  background: var(--accent);
+  color: #ffffff;
+  border-color: var(--accent);
+}
+
+.theme-light .stat-card {
+  background: var(--surface);
+  border: 2px solid var(--border);
+}
+
 .toast-container {
   position: fixed;
   top: 16px;
@@ -79,7 +151,6 @@
   opacity: 0.85;
 }
 
-/* Settings */
 .settings-page {
   padding: 24px;
   max-width: 640px;

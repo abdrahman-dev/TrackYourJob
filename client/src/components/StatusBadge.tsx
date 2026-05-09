@@ -6,6 +6,7 @@ export function StatusBadge({ status }: { status: JobStatus }) {
   return (
     <span
       className="status-badge"
+      data-status={status}
       style={{ background: colors.bg, color: colors.color }}
     >
       {status}
