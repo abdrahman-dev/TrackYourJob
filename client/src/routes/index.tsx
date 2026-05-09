@@ -1,4 +1,4 @@
-import { Routes, Route, useLocation } from 'react-router-dom'
+import { Routes, Route, useLocation, useNavigate } from 'react-router-dom'
 import { AnimatePresence, motion } from 'framer-motion'
 import { Dashboard } from '../features/dashboard/Dashboard'
 import { JobList } from '../features/jobs/JobList'
@@ -6,10 +6,10 @@ import { JobDetail } from '../features/jobs/JobDetail'
 import { JobForm } from '../features/jobs/JobForm'
 import { CVManager } from '../features/cvs/CVManager'
 import { Settings } from '../pages/Settings'
+import { NotFound } from '../pages/NotFound'
 import { useCVs } from '../hooks/useCVs'
 import { useToast } from '../hooks/useToast'
 import { createJob } from '../api/jobs'
-import { useNavigate } from 'react-router-dom'
 import type { Job } from '../types'
 
 function NewJobPage() {
@@ -59,6 +59,7 @@ export function AppRoutes() {
         <Route path="/jobs/:id" element={<AnimatedPage><JobDetail /></AnimatedPage>} />
         <Route path="/cvs" element={<AnimatedPage><CVManager /></AnimatedPage>} />
         <Route path="/settings" element={<AnimatedPage><Settings /></AnimatedPage>} />
+        <Route path="*" element={<AnimatedPage><NotFound /></AnimatedPage>} />
       </Routes>
     </AnimatePresence>
   )

@@ -1,6 +1,8 @@
+import { useState } from 'react'
 import { BrowserRouter } from 'react-router-dom'
 import { ThemeProvider, useTheme } from './context/ThemeContext'
 import { ToastProvider } from './hooks/ToastContext'
+import { ErrorBoundary } from './components/ErrorBoundary'
 import { Sidebar } from './components/Sidebar'
 import { Topbar } from './components/Topbar'
 import { ToastContainer } from './components/Toast'
@@ -16,16 +18,19 @@ import './styles/components.css'
 
 function AppLayout() {
   const { theme } = useTheme()
+  const [sidebarOpen, setSidebarOpen] = useState(false)
 
   return (
     <ToastProvider>
-      <AnimatedBackground theme={theme} />
-      <Sidebar />
-      <Topbar />
-      <main style={{ marginLeft: 'var(--sidebar-width)', paddingTop: 'var(--topbar-height)', minHeight: '100vh', background: 'var(--bg)', position: 'relative', zIndex: 1 }}>
-        <AppRoutes />
-      </main>
-      <ToastContainer />
+      <ErrorBoundary>
+        <AnimatedBackground theme={theme} />
+        <Sidebar isOpen={sidebarOpen} onClose={() => setSidebarOpen(false)} />
+        <Topbar onMenuClick={() => setSidebarOpen((v) => !v)} />
+        <main className="main-content">
+          <AppRoutes />
+        </main>
+        <ToastContainer />
+      </ErrorBoundary>
     </ToastProvider>
   )
 }
