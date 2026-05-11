@@ -54,7 +54,7 @@ export function JobList() {
         <EmptyState
           message={jobs.length === 0 ? 'NO APPLICATIONS YET' : 'No matching applications'}
           actionLabel={jobs.length === 0 ? '+ ADD YOUR FIRST JOB' : undefined}
-          actionTo={jobs.length === 0 ? '/jobs/new' : undefined}
+          actionTo={jobs.length === 0 ? '/app/jobs/new' : undefined}
         />
       ) : (
         <div className="jobs-list">

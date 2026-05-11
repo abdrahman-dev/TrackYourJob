@@ -45,7 +45,7 @@ export function JobDetail() {
     try {
       await removeJob(numericId)
       showToast('Job deleted', 'success')
-      navigate('/jobs')
+      navigate('/app/jobs')
     } catch (e) {
       console.error('Delete failed', e)
       showToast('Failed to delete job', 'error')

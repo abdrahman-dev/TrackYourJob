@@ -10,24 +10,49 @@
 }
 
 .stat-card {
-  background: var(--surface);
+  background: linear-gradient(135deg, var(--surface) 0%, var(--surface-2) 100%);
   border: 2px solid var(--border);
-  padding: 16px;
+  padding: 20px;
   position: relative;
+  transition: border-color 0.15s ease, transform 0.15s ease;
+}
+.stat-card:hover {
+  border-color: var(--card-color, var(--accent));
+  transform: translateY(-1px);
 }
 .stat-card::before {
   content: '';
   display: block;
   height: 3px;
+  width: 100%;
   background: var(--card-color, var(--accent));
   margin-bottom: 12px;
 }
+.stat-card:hover::before {
+  opacity: 1;
+}
+.stat-card-icon {
+  position: absolute;
+  top: 12px;
+  right: 14px;
+  font-size: 18px;
+  color: var(--card-color, var(--accent));
+  opacity: 0.25;
+  transition: opacity 0.15s ease;
+  pointer-events: none;
+}
+.stat-card:hover .stat-card-icon {
+  opacity: 0.5;
+}
 .stat-card-value {
   font-family: var(--font-display);
-  font-size: 32px;
+  font-size: 36px;
   font-weight: 700;
   line-height: 1;
-  margin-bottom: 4px;
+  margin-bottom: 6px;
+  color: var(--text);
+  font-variant-numeric: normal;
+  font-feature-settings: normal;
 }
 .stat-card-label {
   font-size: 11px;
@@ -73,10 +98,11 @@
   border: 2px solid var(--border);
   font-size: 12px;
   cursor: pointer;
-  transition: border-color 0.12s;
+  transition: border-color 0.12s, background 0.12s;
 }
 .dashboard-recent-item:hover {
   border-color: var(--accent);
+  background: var(--surface-2);
 }
 
 .dashboard-recent-dot {
@@ -111,7 +137,7 @@
     gap: 8px;
   }
   .stat-card-value {
-    font-size: 26px;
+    font-size: 28px;
   }
   .dashboard-recent-item {
     flex-wrap: wrap;
@@ -126,7 +152,7 @@
     grid-template-columns: 1fr;
   }
   .stat-card-value {
-    font-size: 24px;
+    font-size: 26px;
   }
   .dashboard-recent-loc,
   .dashboard-recent-divider {

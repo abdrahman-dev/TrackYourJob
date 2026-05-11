@@ -57,9 +57,9 @@
   display: flex;
   align-items: center;
   gap: 6px;
-  font-size: 11px;
+  font-size: 10px;
+  letter-spacing: 0.1em;
   color: var(--text-2);
-  letter-spacing: 0.05em;
 }
 
 .topbar-status-dot {
@@ -71,7 +71,7 @@
 }
 
 .topbar-status-label {
-  font-size: 11px;
+  font-size: 10px;
 }
 
 .topbar-theme-btn {
@@ -94,7 +94,7 @@
   color: #0b0c10;
   font-weight: 700;
   font-size: 11px;
-  padding: 7px 14px;
+  padding: 6px 16px;
   letter-spacing: 0.05em;
   border: 2px solid var(--accent);
   cursor: pointer;

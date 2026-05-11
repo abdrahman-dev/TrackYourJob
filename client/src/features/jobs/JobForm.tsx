@@ -62,9 +62,9 @@ export function JobForm({ initial, cvs, onSave, onDelete }: JobFormProps) {
 
   const handleCancel = () => {
     if (initial?.id) {
-      navigate(`/jobs/${initial.id}`)
+      navigate(`/app/jobs/${initial.id}`)
     } else {
-      navigate('/jobs')
+      navigate('/app/jobs')
     }
   }
 

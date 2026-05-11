@@ -1,5 +1,6 @@
 import { Routes, Route, useLocation, useNavigate } from 'react-router-dom'
 import { AnimatePresence, motion } from 'framer-motion'
+import { Landing } from '../pages/Landing'
 import { Dashboard } from '../features/dashboard/Dashboard'
 import { JobList } from '../features/jobs/JobList'
 import { JobDetail } from '../features/jobs/JobDetail'
@@ -7,6 +8,8 @@ import { JobForm } from '../features/jobs/JobForm'
 import { CVManager } from '../features/cvs/CVManager'
 import { Settings } from '../pages/Settings'
 import { NotFound } from '../pages/NotFound'
+import { Login } from '../pages/auth/Login'
+import { Register } from '../pages/auth/Register'
 import { useCVs } from '../hooks/useCVs'
 import { useToast } from '../hooks/useToast'
 import { createJob } from '../api/jobs'
@@ -21,7 +24,7 @@ function NewJobPage() {
     const payload: Omit<Job, 'id'> = { ...data, created_at: new Date().toISOString() }
     const id = await createJob(payload)
     showToast('Job created successfully', 'success')
-    navigate(`/jobs/${id}`)
+    navigate(`/app/jobs/${id}`)
   }
 
   return (
@@ -53,12 +56,15 @@ export function AppRoutes() {
   return (
     <AnimatePresence mode="wait">
       <Routes location={location} key={location.pathname}>
-        <Route path="/" element={<AnimatedPage><Dashboard /></AnimatedPage>} />
-        <Route path="/jobs" element={<AnimatedPage><JobList /></AnimatedPage>} />
-        <Route path="/jobs/new" element={<AnimatedPage><NewJobPage /></AnimatedPage>} />
-        <Route path="/jobs/:id" element={<AnimatedPage><JobDetail /></AnimatedPage>} />
-        <Route path="/cvs" element={<AnimatedPage><CVManager /></AnimatedPage>} />
-        <Route path="/settings" element={<AnimatedPage><Settings /></AnimatedPage>} />
+        <Route path="/" element={<Landing />} />
+        <Route path="/app" element={<AnimatedPage><Dashboard /></AnimatedPage>} />
+        <Route path="/app/jobs" element={<AnimatedPage><JobList /></AnimatedPage>} />
+        <Route path="/app/jobs/new" element={<AnimatedPage><NewJobPage /></AnimatedPage>} />
+        <Route path="/app/jobs/:id" element={<AnimatedPage><JobDetail /></AnimatedPage>} />
+        <Route path="/app/cvs" element={<AnimatedPage><CVManager /></AnimatedPage>} />
+        <Route path="/app/settings" element={<AnimatedPage><Settings /></AnimatedPage>} />
+        <Route path="/login" element={<AnimatedPage><Login /></AnimatedPage>} />
+        <Route path="/register" element={<AnimatedPage><Register /></AnimatedPage>} />
         <Route path="*" element={<AnimatedPage><NotFound /></AnimatedPage>} />
       </Routes>
     </AnimatePresence>
