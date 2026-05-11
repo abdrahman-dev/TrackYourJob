@@ -20,7 +20,7 @@ export function JobCard({ job, index }: JobCardProps) {
       initial={{ opacity: 0, x: -8 }}
       animate={{ opacity: 1, x: 0 }}
       transition={{ duration: 0.15, delay: index * 0.04, ease: [0.25, 0.46, 0.45, 0.94] }}
-      onClick={() => navigate(`/jobs/${job.id}`)}
+      onClick={() => navigate(`/app/jobs/${job.id}`)}
     >
       <span className="job-card-dot" style={{ background: dotColor }} />
       <span className="job-card-role">{job.role}</span>

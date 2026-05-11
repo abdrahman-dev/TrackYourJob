@@ -13,26 +13,27 @@ function getAccentColor(): string {
   return getComputedStyle(document.documentElement).getPropertyValue('--accent').trim() || '#4f8ef7'
 }
 
-function initParticles(w: number, h: number): Particle[] {
+function initParticles(w: number, h: number, count: number, minOpacity: number, maxOpacity: number): Particle[] {
   const particles: Particle[] = []
-  for (let i = 0; i < 35; i++) {
+  for (let i = 0; i < count; i++) {
     particles.push({
       x: Math.random() * w,
       y: Math.random() * h,
       vx: (Math.random() - 0.5) * 0.3,
       vy: (Math.random() - 0.5) * 0.3,
-      radius: 1.5 + Math.random() * 1.5,
-      opacity: 0.04 + Math.random() * 0.08,
+      radius: 1.5 + Math.random() * 2,
+      opacity: minOpacity + Math.random() * (maxOpacity - minOpacity),
     })
   }
   return particles
 }
 
-export function AnimatedBackground({ theme }: { theme: string }) {
+export function AnimatedBackground({ theme, hasSidebar = true, intensity = 'normal' }: { theme: string; hasSidebar?: boolean; intensity?: 'normal' | 'high' }) {
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const particlesRef = useRef<Particle[]>([])
   const rafRef = useRef<number>(0)
   const accentRef = useRef<string>('#4f8ef7')
+  const isHigh = intensity === 'high'
 
   useEffect(() => {
     accentRef.current = getAccentColor()
@@ -45,10 +46,15 @@ export function AnimatedBackground({ theme }: { theme: string }) {
     const ctx = canvas.getContext('2d')
     if (!ctx) return
 
+    const sidebarOffset = hasSidebar ? 220 : 0
+    const count = isHigh ? 45 : 35
+    const minOpacity = isHigh ? 0.18 : 0.12
+    const maxOpacity = isHigh ? 0.30 : 0.22
+
     const resize = () => {
-      canvas.width = window.innerWidth - 220
+      canvas.width = window.innerWidth - sidebarOffset
       canvas.height = window.innerHeight
-      particlesRef.current = initParticles(canvas.width, canvas.height)
+      particlesRef.current = initParticles(canvas.width, canvas.height, count, minOpacity, maxOpacity)
     }
 
     resize()
@@ -91,7 +97,7 @@ export function AnimatedBackground({ theme }: { theme: string }) {
       cancelAnimationFrame(rafRef.current)
       window.removeEventListener('resize', resize)
     }
-  }, [])
+  }, [hasSidebar, isHigh])
 
   return (
     <canvas
@@ -99,8 +105,8 @@ export function AnimatedBackground({ theme }: { theme: string }) {
       style={{
         position: 'fixed',
         top: 0,
-        left: 220,
-        width: 'calc(100vw - 220px)',
+        left: hasSidebar ? 220 : 0,
+        width: hasSidebar ? 'calc(100vw - 220px)' : '100vw',
         height: '100vh',
         zIndex: 0,
         pointerEvents: 'none',

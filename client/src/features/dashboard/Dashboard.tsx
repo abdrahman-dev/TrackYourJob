@@ -1,7 +1,9 @@
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { motion } from 'framer-motion'
 import { StatCard } from './StatCard'
 import { StatusBadge } from '../../components/StatusBadge'
+import { EmptyState } from '../../components/EmptyState'
 import { getStats } from '../../db'
 import { useJobs } from '../../hooks/useJobs'
 import { formatDate } from '../../utils/formatDate'
@@ -17,6 +19,13 @@ const CARD_DATA: { label: string; color: string; key: keyof Stats }[] = [
   { label: 'SAVED',     color: '#f9e2af', key: 'saved' },
 ]
 
+const EMPTY_ART = `
+  ┌─────────────────┐
+  │   NO DATA YET   │
+  │   ············  │
+  │   ············  │
+  └─────────────────┘`
+
 export function Dashboard() {
   const [stats, setStats] = useState<Stats | null>(null)
   const { jobs } = useJobs()
@@ -31,7 +40,12 @@ export function Dashboard() {
     .slice(0, 5)
 
   return (
-    <div className="dashboard">
+    <motion.div
+      className="dashboard"
+      initial={{ opacity: 0, y: 6 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.2, ease: [0.25, 0.46, 0.45, 0.94] }}
+    >
       <div className="dashboard-grid">
         {stats && CARD_DATA.map((card, i) => (
           <StatCard
@@ -47,15 +61,19 @@ export function Dashboard() {
       <div>
         <div className="dashboard-recent-header">
           <div className="dashboard-recent-title">RECENT APPLICATIONS</div>
-          <span className="dashboard-view-all" style={{ cursor: 'pointer' }} onClick={() => navigate('/jobs')}>
+          <span className="dashboard-view-all" style={{ cursor: 'pointer' }} onClick={() => navigate('/app/jobs')}>
             VIEW ALL →
           </span>
         </div>
 
         {recentJobs.length === 0 ? (
-          <div className="empty-state" style={{ padding: '24px' }}>
-            <div className="empty-state-text">No applications yet</div>
-          </div>
+          <EmptyState
+            art={EMPTY_ART}
+            message="NO APPLICATIONS YET"
+            subtitle="Start tracking your job search journey"
+            actionLabel="+ ADD FIRST JOB"
+            actionTo="/app/jobs/new"
+          />
         ) : (
           <div className="dashboard-recent-list">
             {recentJobs.map((job) => {
@@ -64,7 +82,7 @@ export function Dashboard() {
                 <div
                   key={job.id}
                   className="dashboard-recent-item"
-                  onClick={() => navigate(`/jobs/${job.id}`)}
+                  onClick={() => navigate(`/app/jobs/${job.id}`)}
                 >
                   <span className="dashboard-recent-dot" style={{ background: sc.color }} />
                   <span className="dashboard-recent-role">{job.role}</span>
@@ -88,6 +106,6 @@ export function Dashboard() {
           </div>
         )}
       </div>
-    </div>
+    </motion.div>
   )
 }

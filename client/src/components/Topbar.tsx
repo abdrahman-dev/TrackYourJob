@@ -1,13 +1,6 @@
 import { useLocation, useNavigate } from 'react-router-dom'
 import { useTheme } from '../context/ThemeContext'
 
-const PAGE_TITLES: Record<string, string> = {
-  '/': '// DASHBOARD',
-  '/jobs': '// JOBS',
-  '/cvs': '// CVs',
-  '/settings': '// SETTINGS',
-}
-
 interface TopbarProps {
   onMenuClick: () => void
 }
@@ -17,13 +10,17 @@ export function Topbar({ onMenuClick }: TopbarProps) {
   const navigate = useNavigate()
   const { theme, toggleTheme } = useTheme()
 
-  const basePath = '/' + (location.pathname.split('/')[1] || '')
-  let title = PAGE_TITLES[basePath] || '// TYJ'
+  const getTitle = (pathname: string): string => {
+    if (pathname === '/app' || pathname === '/app/') return '// DASHBOARD'
+    if (pathname.startsWith('/app/jobs/new')) return '// NEW JOB'
+    if (pathname.startsWith('/app/jobs/')) return '// JOB DETAIL'
+    if (pathname.startsWith('/app/jobs')) return '// JOBS'
+    if (pathname.startsWith('/app/cvs')) return '// CVs'
+    if (pathname.startsWith('/app/settings')) return '// SETTINGS'
+    return '// TYJ'
+  }
 
-  if (location.pathname === '/jobs/new') title = '// NEW JOB'
-  else if (location.pathname.match(/^\/jobs\/\d+$/)) title = '// JOB DETAIL'
-
-  const showAdd = basePath === '/jobs' && location.pathname === '/jobs'
+  const title = getTitle(location.pathname)
 
   return (
     <header className="topbar">
@@ -41,11 +38,9 @@ export function Topbar({ onMenuClick }: TopbarProps) {
           <span className="topbar-status-dot" />
           <span className="topbar-status-label">SYS_OK</span>
         </div>
-        {showAdd && (
-          <button className="topbar-add-btn" onClick={() => navigate('/jobs/new')}>
-            + ADD JOB
-          </button>
-        )}
+        <button className="topbar-add-btn" onClick={() => navigate('/app/jobs/new')}>
+          + ADD JOB
+        </button>
       </div>
     </header>
   )
