@@ -4,7 +4,7 @@
   "version": "1.0.0",
   "description": "Offline-first job application tracker — root convenience scripts. The app itself lives in ./client.",
   "license": "MIT",
-  "author": "Abdrahman Walied <abdrahmanwalied11@gmail.com>",
+  "author": "Abdrahman Walied <abdrahmanalhwary43@gmail.com>",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/abdrahman-dev/TrackYourJob.git"
