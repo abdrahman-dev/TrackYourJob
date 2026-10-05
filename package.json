@@ -1,0 +1,23 @@
+{
+  "name": "track-your-job-workspace",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Offline-first job application tracker — root convenience scripts. The app itself lives in ./client.",
+  "license": "MIT",
+  "author": "Abdrahman Walied <abdrahmanwalied11@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/abdrahman-dev/TrackYourJob.git"
+  },
+  "engines": {
+    "node": "^20.19.0 || >=22.12.0"
+  },
+  "scripts": {
+    "dev": "npm --prefix client run dev",
+    "build": "npm --prefix client run build",
+    "preview": "npm --prefix client run preview",
+    "lint": "npm --prefix client run lint",
+    "typecheck": "npm --prefix client exec tsc -b",
+    "install:all": "npm --prefix client install"
+  }
+}
