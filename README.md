@@ -27,29 +27,6 @@ watch your pipeline — with no account, no server, and no data ever leaving you
 
 ---
 
-## 📸 Screenshots
-
-> Screenshots are placeholders — drop your captures into [`screenshots/`](screenshots/) using the
-> filenames listed in [`screenshots/README.md`](screenshots/README.md).
-
-| Landing | Dashboard (dark) |
-| :---: | :---: |
-| ![Landing page](screenshots/landing.png) | ![Dashboard dark](screenshots/dashboard-dark.png) |
-
-| Dashboard (light) | Jobs list |
-| :---: | :---: |
-| ![Dashboard light](screenshots/dashboard-light.png) | ![Jobs list](screenshots/jobs.png) |
-
-| Job detail | CV manager |
-| :---: | :---: |
-| ![Job detail](screenshots/job-detail.png) | ![CV manager](screenshots/cv-manager.png) |
-
-| Settings | Mobile |
-| :---: | :---: |
-| ![Settings](screenshots/settings.png) | ![Mobile](screenshots/mobile.png) |
-
----
-
 ## ✨ Features
 
 - **Landing page** — Full marketing landing with animated hero mockup, features grid, how-it-works steps, FAQ accordion, and CTA section
@@ -174,7 +151,6 @@ TrackYourJob/
 │   ├── tsconfig.app.json             # App compiler options (strict mode)
 │   ├── tsconfig.node.json            # Compiler options for vite.config.ts
 │   └── vite.config.ts                # Vite + React plugin config
-├── screenshots/                       # README screenshot placeholders (see screenshots/README.md)
 ├── .dockerignore                     # Keeps node_modules/dist out of the Docker build context
 ├── .editorconfig                     # Consistent whitespace and newlines across editors
 ├── .gitignore                        # Root ignore rules
